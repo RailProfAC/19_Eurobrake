@@ -53,7 +53,8 @@ An a priori determined set of braking curves is feasible for trains running in f
 
 
 \section{\uppercase{Introduction}}
-\subsection{\uppercase{Railway System Operation}}
+\subsection{\uppercase{Railway System Operation (Bernd)}}
+%BM235
 Among the key differences between road and rail traffic relevant to this work are the composition of trains and wheel-rail contact between steel contact partners. While the latter contributes largely to the energy efficiency of the railways by reducing flexing work of tyres or wheels, it provides only limited tangential force transfer between wheel and rail, resulting in longer braking distances. 
 
 The formation of trains is also an advantage of the railway system, as it reduces labour cost, infrastructure usage and energy consumption of the trains. Depending on infrastructure constraints, train consists of up to 6000 m length are formed. The case under consideration assumes a European setting, limiting the maximum train length in most parts of the network to 740 m \cite{tsiinf}.
@@ -142,7 +143,8 @@ Approach \subref{fig:RelBakDist} is the most performant of the presented approac
 \label{fig:DistanceKeeping}
 \end{figure}
 
-\subsection{Train Protection Systems}
+\subsection{Train Protection Systems (Bernd)}
+%ETCS \neq LZB
 In order to maintain the distances as required by operational safety under consideration of the long braking distances, operation on the basis of driver's sight is not sufficient. In the case of higher velocities, it is even necessary to use cab signaling instead of track side signals.
 
  According to their type of information transfer, it is possible to distinguish between
@@ -156,7 +158,7 @@ Discrete systems are installed at selected points of the line, e.g. signal posit
 
 Spatially continuous systems use means of communication that are able to communicate independent of the position of the train between infrastructure and vehicle. This may be realised by track-sided loops, e.g. Euroloop or the German LZB system, alternatively a safe radio transmission such as GSM-R can be utilised. With the continuous train protection system it is possible to shift towards an increasing automation of the railway system. 
 
-\section{Braking Models}
+\section{Braking Models (Raphael)}
 \subsection{Introduction}
 For operation in fixed spatial distance it is possible to consider the braking performance of the train and existing gradients to calculate the maximum permissible speed for each part of the line to be travelled. This is typically done in Europe based on the so called braked weight percentages. 
 
@@ -246,7 +248,7 @@ With Figure \ref{Fig:BrakingCurves} in view, it is more obvious how to calculate
 
 The European Railway Agency has conceived an approach that based its prediction on the braked weight percentages of the train, based on tests with with a large variety of trains \cite{ERAbrakingcurves}. It may be expected that the trains employed for testing are selected to be representative of the maintenance and technical of freight wagons. For this reason, trains made up of uniform wagon type which are well maintained and of current design may be treated disadvantageously. Further, the feasible amount of train testing is obviously limited compared to the confidence levels typically required by train protection systems which are in the range $\alpha = 10^{-6} \ldots 10^{-9}$.
 
-\section{Big Data and Big Data Streams}
+\section{Big Data and Big Data Streams (Ingo)}
 \subsection{Introduction}
 In the present research on usage of Big Data in the railway system, mostly two areas are considered to gain advantage from Big Data Usage, which is on the one hand condition based maintenance, e.g. \cite{fumeo2015condition, thaduri2015railway}. The potential for savings by optimising maintenance is high in the railway business, as the lifecycle of vehicles is long and thus the maintenance cost is typically higher than the initial investment.
 
@@ -289,7 +291,7 @@ For the example application presented in this paper, the DB Cargo open data set 
 
 The quantity of data for DB Cargo alone will amount to approximately 100 TB per year, which can be extrapolated by DB market share of 62 \% to approximately 150 TB per year for all freight railway undertakings in Germany. Since one peculiarity of the freight rail system is that some wagons run very frequently while others are rarely operated, this dataset needs to be kept accessible and shared between the operators in order to obtain  information on past performance of a wagon.
 
-\subsection{MapReduce algorithm}
+\subsection{MapReduce algorithm (Raphael, Ingo)}
 Since current servers are not able to handle data sets of this size and streams of this velocity in an undistributed fashion, a special type of algorithm is required. One common algorithm type for Big Data applications is the MapReduce algorithm, which were introduced by Google \cite{dean2008mapreduce}.
 
 MapReduce type algorithms use three steps for computation:
@@ -301,7 +303,7 @@ MapReduce type algorithms use three steps for computation:
 
 The key advantage of the MapReduce scheme for Big Data is its scalability. Due to the split operation on the data in the Map and Reduce steps, it is designed for handling the dataset in multiple nodes. This removes any limitations in e.g. RAM size of the individual nodes.
 
-\section{Proposed approach to braking performance monitoring}
+\section{Proposed approach to braking performance monitoring (Raphael, Ingo)}
 \subsection{Introduction}
 Following the above arguments, a precise prediction of braking distances is highly desirable for performance reasons. In most countries of the world, freight rail rolling stock is comparably little advanced in terms of monitoring and connectivity. The typical freight wagon does not have power supply nor sensors. The sensible step to equip freight wagons with sensing, processing and connecting capabilities was proposed under the term \textit{Wagon 4.0} in \cite{pfaff2017stephenson}. The Wagon 4.0 makes sensing and data collection economically viable. Further it is open for further developments due to the introduction of an operating system, making the functionality described in the sequel work like a mobile phone app.
 
