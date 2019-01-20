@@ -248,9 +248,9 @@ The European Railway Agency has conceived an approach that based its prediction 
 
 \section{Big Data and Big Data Streams}
 \subsection{Introduction}
-In the present research on usage of Big Data in the railway system, mostly two areas are considered to gain advantage from Big Data Usage, which is on the one hand condition based maintenance, e.g. \cite{fumeo2015condition, thaduri2015railway}. The potential for savings by optimising maintenance is high in the railway business, as the lifecycle of vehicles is long and thus the maintenance cost is typically higher than the initial investment.
+In the present research on usage of Big Data in the railway system, mostly two areas are considered to gain advantage from Big Data Usage, which is on the one hand condition based maintenance, e.g. \cite{fumeo2015condition, thaduri2015railway, elsen:Cray}. The potential for savings by optimising maintenance is high in the railway business, as the lifecycle of vehicles is long and thus the maintenance cost is typically higher than the initial investment.
 
-On the other hand, prediction of operational status as well as optimisation of railway operation, as in e.g. \cite{papa2016delay, oneto2016delay}, are fields were the data integration may be put to service profitably.
+On the other hand, prediction of operational status as well as optimisation of railway operation, as in e.g. \cite{papa2016delay, oneto2016} delay, \cite{elsen:ISC17}, are fields were the data integration may be put to service profitably.
 
 This paper deals with the interface between these two: The results of the analysis of variations in braking performance are employed to optimise operational performance of railways, however on a single wagon level which is less abstract than in pure operational approaches. At the same time, the recorded retardation data  provides insight into the maintenance state of the individual wagon, but without looking into single components.
 
@@ -275,31 +275,26 @@ This paper deals with the interface between these two: The results of the analys
 	\end{center}
 \end{table}
 
-A common definition of Big Data is based on the 5 V \cite{hilbert2016big}:
+The determination of Big Data is often Based on the "V's"' of Big Data \cite{hilbert2016big, Eadline2016}. While there are sometimes different sets of the V's, they all share in common
 \begin{description}
 	\item[Volume:] quantity of stored and generated data 
 	\item[Variety:] type and nature of the data
 	\item[Velocity:] speed at which the data is generated
-	\item[Variability:] potential inconsistency of the data
 	\item[Veracity:] quality of the captured data
 \end{description}
-While neither volume nor velocity is defined concisely in order to qualify a data set as Big Data, a combination of these five criteria is likely to make Big Data approaches viable for the data set under consideration.
+It is obvious that PetaBytes of Volume of data can be considered to belong into the realm of Big Data, but it is far more often the combination of the Vs that qualifies a problem as a Big Data problem.
 
-For the example application presented in this paper, the DB Cargo open data set \cite{DBOpenDataZug} is analysed for the number of freight trains operated (cf. Table \ref{Tab:Zugfahrten}). DB Cargo operates on average 2.6 million freight trains per month. Assume ten braking processes per train made up of 20 wagons and the braking deceleration sampled at 10 Hz during the typical braking time of approximately 90 s. At 20 bytes per sample, this yields 9.4 TB of data per month. Since freight trains operated mostly at night, assume 360 operational hours per month to calculate the peak data rate of 7.2 MB/s. While this data rate is not huge compared to other applications, its real time processing will enable to react quickly within the ETCS framework on any deterioration of braking performance.
+For the example application presented in this paper, the DB Cargo open data set \cite{DBOpenDataZug} is analysed for the number of freight trains operated (cf. Table \ref{Tab:Zugfahrten}). DB Cargo operates on average 2.6 million freight trains per month. Assume 10 braking processes per train made up of 20 wagons and the braking deceleration sampled at 10Hz during the typical braking time of approximately 90s. This leads to $486\cdot 10^9$ datapoints per month. At 20 bytes per sample, this yields 9.4TB of data per month. Since freight trains are operated mostly at night, assume 360 operational hours per month to calculate the peak data rate of 7.2MB/s. While this data rate is not huge compared to other applications, its real time processing will enable to react quickly within the ETCS framework on any deterioration of braking performance.
 
-The quantity of data for DB Cargo alone will amount to approximately 100 TB per year, which can be extrapolated by DB market share of 62 \% to approximately 150 TB per year for all freight railway undertakings in Germany. Since one peculiarity of the freight rail system is that some wagons run very frequently while others are rarely operated, this dataset needs to be kept accessible and shared between the operators in order to obtain  information on past performance of a wagon.
+The quantity of data for DB Cargo alone will amount to approximately 100TB (and $>5.8\cdot 10^{12}$ datapoints) per year, which can be extrapolated by DB market share of 62\% to approximately 150TB per year for all freight railway undertakings in Germany. Since one peculiarity of the freight rail system is that some wagons run very frequently while others are rarely operated, this dataset needs to be kept accessible and shared between the operators in order to obtain  information on past performance of a wagon.
 
-\subsection{MapReduce algorithm}
-Since current servers are not able to handle data sets of this size and streams of this velocity in an undistributed fashion, a special type of algorithm is required. One common algorithm type for Big Data applications is the MapReduce algorithm, which were introduced by Google \cite{dean2008mapreduce}.
+On top of that, there is the requirement not only to store the data -- including burst transfers during on-line transmission of data -- but also for a real time prediction of potentially critical situations
 
-MapReduce type algorithms use three steps for computation:
-\begin{enumerate}
-	\item Map: The \texttt{map()} function is applied to the local input data at each worker node. Redundant input data is ignored.
-	\item Shuffle: The worker nodes redistribute the data based on output keys such that all data belonging to one output key is located on one node.
-	\item Reduce: Each group of output data is processed in parallel per key. 
-\end{enumerate}
+\subsection{Processing slow and fast data}
+As has been shown in \cite{elsen:M318} similar requirements are encountered when performing real-time arrival predicitions for trains. The architecture is based on the Lambda--Architecture pattern \cite{Marz2015}
 
-The key advantage of the MapReduce scheme for Big Data is its scalability. Due to the split operation on the data in the Map and Reduce steps, it is designed for handling the dataset in multiple nodes. This removes any limitations in e.g. RAM size of the individual nodes.
+While the data generated during operation is required to be processed with sub-second latency\footnote{The operation requirement is still in the range of a few seconds, but this includes the complete data flow.}, every date must be stored and is used as input to the machine learning algorithms. This ensures, that data analysis, classifiers and predictors operate on the most recent dataset possible. The real-time processing in the Streaming Layer of the Lambda-Architecture relies on a stream-processing framework (Apache Storm, for higher latencies, Apache Spark would be possible, too), the preparation of the datasets for training of the ML algorithms or analyzing a large dataset takes advantage of the Batch-Processing Layer using well known Hadoop--Tools like Hive and HBase or straigt forward implementations using the well known MapReduce algorithm \cite{Dean:2004:MSD:1251254.1251264}
+
 
 \section{Proposed approach to braking performance monitoring}
 \subsection{Introduction}
@@ -391,11 +386,9 @@ The exploitation of the time behaviour of the brake pipe system also has the pot
 
 % Bibliography
 % ---------------------------------------------------------------------------------
-\bibliographystyle{apacite}
-\bibliography{../bib}
+\bibliographystyle{plain}
+\bibliography{./EB2019-IBC-009}
 % ---------------------------------------------------------------------------------
-
-
 
 \section*{Biographies}
 
