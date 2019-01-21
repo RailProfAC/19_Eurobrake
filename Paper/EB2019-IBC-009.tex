@@ -9,29 +9,41 @@
 \usepackage[labelformat=simple]{subcaption}
 \usepackage{wasysym}
 \usepackage{enumitem}
+\usepackage{titlecaps}
 \renewcommand\thesubfigure{(\alph{subfigure})}
 % Strange fisita formatting
 \setkomafont{title}{\normalfont\bfseries}
 \addtokomafont{disposition}{\rmfamily}
-\setkomafont{section}{\large\bfseries}
-\setkomafont{subsection}{}
+\setkomafont{section}{\large\bfseries\MakeUppercase}
+\setkomafont{subsection} {\underline}
 \setkomafont{subsubsection}{\large\bfseries}
 
-\setlist[description]{  font={\bfseries\rmfamily}
+\setlist[description]{font={\bfseries\rmfamily}
 }
+
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
 
 
 % Begin the LaTeX document
 \begin{document}
-
+\setlength{\parindent}{0ex}
 % Paper Title
-\title{\large \uppercase{Analysis of Big Data Streams to obtain Braking Reliability Information for Train Protection systems}}
+\title{
+	\begin{flushleft}
+	{\normalsize\textbf{EB2019-IBC-009}
+	}\\ \vspace{.5cm}
+	\large \uppercase{Analysis of Big Data Streams to obtain Braking Reliability Information for Train Protection systems}
+	\end{flushleft}
+	}
 
 % Authors List
 \author{\normalsize	
 	Pfaff, Raphael*, Elsen, Ingo, Schmidt, Bernd \\ \normalsize	
-	FH Aachen University of Applied Sciences, Aachen, Germany \\
-	\normalsize \{pfaff, elsen, b.schmidt\}@fh-aachen.de}
+	FH Aachen University of Applied Sciences, Aachen, Germany %\\
+	%\normalsize \{pfaff, elsen, b.schmidt\}@fh-aachen.de
+	}
 \date{}
 % Author Affiliations
 % Create the title
@@ -40,6 +52,7 @@
 % Abstract
 
 KEYWORDS - ETCS, braking curve, big data, performance prediction, condition monitoring
+\vspace{.2cm}
 
 ABSTRACT 
 
@@ -52,8 +65,8 @@ However, higher developed train protection and control systems, such as the Euro
 An a priori determined set of braking curves is feasible for trains running in fixed or a limited number of formations, such as multiple unit trains, however in the freight railway system due to its vast amount of different vehicles and possible train setups, the determination of the braking curves is prohibitive.
 
 
-\section{\uppercase{Introduction}}
-\subsection{\uppercase{Railway System Operation (Bernd)}}
+\section{Introduction}
+\subsection{\titlecap{Railway system operation} (Bernd)}
 %BM235
 Among the key differences between road and rail traffic relevant to this work are the composition of trains and wheel-rail contact between steel contact partners. While the latter contributes largely to the energy efficiency of the railways by reducing flexing work of tyres or wheels, it provides only limited tangential force transfer between wheel and rail, resulting in longer braking distances. 
 
@@ -393,24 +406,8 @@ The exploitation of the time behaviour of the brake pipe system also has the pot
 
 % Bibliography
 % ---------------------------------------------------------------------------------
-\bibliographystyle{apacite}
-\bibliography{../bib}
-% ---------------------------------------------------------------------------------
-
-
-
-\section*{Biographies}
-
-% Example bio with picture
-
-\noindent\textbf{Raphael Pfaff} was born in Hagen, Germany in 1977. He pursued studies in Mechatronics (FH Bochum, Germany, Dipl.-Ing. (FH) 2006), Mathematics (FeU Hagen, BSc 2007) and Control Engineering (Coventry University, UK, MSc 2006, PhD 2013). He worked with Siemens and Faiveley Transport as System Engineer and Engineering Manager before receiving the call for his current position as Professor of Rail Vehicle Engineering at FH Aachen. His research interests include digitisation of railway rolling stock, reliability engineering and big data usage as well as wheel-rail contact modelling. He is scientific advisor to the Interdisciplinary Railway Research Network (IfV Bahntechnik) as well as  member of German Mathematical Society (DMV) and German Rail Engineering Society (DMG).
-
-
-
-
-%\section*{Appendix}
-%
-%If the paper has an appendix, the appendix should appear at the end of the paper after the biographies. The appendix section is optional. 
+\bibliographystyle{plain}
+\bibliography{../../../../bib.bib}
 
 
 \end{document}
