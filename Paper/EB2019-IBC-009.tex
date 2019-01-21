@@ -179,60 +179,60 @@ For operation under continuous train control, typically traveling at higher velo
 
 From the infrastructure side of the railway system, the track gradient is known and the resulting acceleration of the train can be calculated and recorded in a database, denominated $a_{\text{grad}} = a_{\text{grad}}(s)$, a function of the distance.
 
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-	name=main plot,
-	xlabel=$v/ \mathrm{ms^{-1}}$,
-	ylabel=$a_{\text{sb}}/ \mathrm{ms^{-2}}$,
-	xmin = 0, ymin = 0, ymax = 1.2, xmax = 55.5, height = 3cm, width = 7cm,
-	]
-\addplot table[x=V, y=A, mark = none] {DecelerationProfile.dat};
-\end{axis}
-%\end{tikzpicture}
-%\begin{tikzpicture}
-\begin{axis}[
-	 at={(main plot.below south west)},yshift=-0.1cm,
-	 anchor=north west,
-	xlabel=$s / \mathrm{m}$,
-	ylabel=$v/ \mathrm{ms^{-1}}$,
-	ymin = 0, xmin = 0, xmax = 3000,
-	height = 5cm, width = 7cm,
-	legend entries={$\mathcal{C}_{1.0}$,$\mathcal{C}_{0.9}$,$\mathcal{C}_{0.7}$},
-	mark repeat=10,mark phase=7
-	]
-\addplot[thick, black] table[x=S, y=V, mark = none] {BrakingCurve.dat};
-\addplot[thick, blue, mark = none, dashed] table[x=S1, y=V1] {BrakingCurve.dat};
-\addplot[thick, red, mark = none, densely dotted] table[x=S2, y=V2] {BrakingCurve.dat};
-\end{axis}
-\begin{axis}[
-		at={(main plot.below south west)},yshift=-0.1cm,
-	 anchor=north west,
-		ylabel near ticks, yticklabel pos=right,
-		ylabel=$i/ \permil$,
-		 axis x line=none, 
-		xmin = 0, xmax = 3000,
-		height = 5cm, width = 7cm]
-\addplot table[x=S, y=I, mark = none] {RouteProfile.dat};
-\end{axis}
-\end{tikzpicture}
-\caption{Braking Curves $\mathcal{C}_{k}$ for $k \,a_{\text{sb}}$ available service brake deceleration on a given route profile with gradient $i$}
-\label{Fig:BrakingCurves}
-\end{center}
-\end{figure}
-
-In Figure \ref{Fig:BrakingCurves}, a set of braking curves $\mathcal{C}_{k}$ for the service brake is depicted for different levels of availability of the service brake. The resulting braking curves obviously vary widely, partly due to the train at $\mathcal{C_{0.7}}$ reaching the negative slope a $s = 2000$ on its trajectory.
-
-\begin{figure*}[!htb]
-\begin{center}
-\includegraphics[width = 0.9\textwidth]{TrainBPDiagram}
-\caption{Train with pneumatic automatic brake}
-\label{Fig:TrainBP}
-\end{center}
-\end{figure*}
-
-The braking system of a train for freely configurable train consists is designed as a distributed system, with the command line also supply pneumatic energy to the brakes along the train. These typically consist of one distributor valve per carriage or wagon and up to 12 brake actors, i.e. brake cylinders and calipers. Figure \ref{Fig:TrainBP} depicts a train setup with brake components.
+%%\begin{figure}
+%%\begin{center}
+%%\begin{tikzpicture}
+%%\begin{axis}[
+%%	name=main plot,
+%%	xlabel=$v/ \mathrm{ms^{-1}}$,
+%%	ylabel=$a_{\text{sb}}/ \mathrm{ms^{-2}}$,
+%%	xmin = 0, ymin = 0, ymax = 1.2, xmax = 55.5, height = 3cm, width = 7cm,
+%%	]
+%%\addplot table[x=V, y=A, mark = none] {DecelerationProfile.dat};
+%%\end{axis}
+%%%\end{tikzpicture}
+%%%\begin{tikzpicture}
+%%\begin{axis}[
+%%	 at={(main plot.below south west)},yshift=-0.1cm,
+%%	 anchor=north west,
+%%	xlabel=$s / \mathrm{m}$,
+%%	ylabel=$v/ \mathrm{ms^{-1}}$,
+%%	ymin = 0, xmin = 0, xmax = 3000,
+%%	height = 5cm, width = 7cm,
+%%	legend entries={$\mathcal{C}_{1.0}$,$\mathcal{C}_{0.9}$,$\mathcal{C}_{0.7}$},
+%%	mark repeat=10,mark phase=7
+%%	]
+%%\addplot[thick, black] table[x=S, y=V, mark = none] {BrakingCurve.dat};
+%%\addplot[thick, blue, mark = none, dashed] table[x=S1, y=V1] {BrakingCurve.dat};
+%%\addplot[thick, red, mark = none, densely dotted] table[x=S2, y=V2] {BrakingCurve.dat};
+%%\end{axis}
+%%\begin{axis}[
+%%		at={(main plot.below south west)},yshift=-0.1cm,
+%%	 anchor=north west,
+%%		ylabel near ticks, yticklabel pos=right,
+%%		ylabel=$i/ \permil$,
+%%		 axis x line=none, 
+%%		xmin = 0, xmax = 3000,
+%%		height = 5cm, width = 7cm]
+%%\addplot table[x=S, y=I, mark = none] {RouteProfile.dat};
+%%\end{axis}
+%%\end{tikzpicture}
+%%\caption{Braking Curves $\mathcal{C}_{k}$ for $k \,a_{\text{sb}}$ available service brake deceleration on a given route profile with gradient $i$}
+%%\label{Fig:BrakingCurves}
+%%\end{center}
+%%\end{figure}
+%%
+%%In Figure \ref{Fig:BrakingCurves}, a set of braking curves $\mathcal{C}_{k}$ for the service brake is depicted for different levels of availability of the service brake. The resulting braking curves obviously vary widely, partly due to the train at $\mathcal{C_{0.7}}$ reaching the negative slope a $s = 2000$ on its trajectory.
+%
+%\begin{figure*}[!htb]
+%\begin{center}
+%\includegraphics[width = 0.9\textwidth]{TrainBPDiagram}
+%\caption{Train with pneumatic automatic brake}
+%\label{Fig:TrainBP}
+%\end{center}
+%\end{figure*}
+%
+%The braking system of freely configurable train consist is designed as a distributed system, with the command line also supplying pneumatic energy to the brakes along the train. These typically consist of one distributor valve per carriage or wagon and up to 12 brake actors, i.e. brake cylinders and calipers. Figure \ref{Fig:TrainBP} depicts a train setup with brake components.
 
 The braking system of the carriages or wagons is checked qualitatively at least once every 24 h, however efficiency may vary considerably over the maintenance interval. Further, plenty of instantaneous error modes may inhibit the proper generation of a braking force by one or more actuators. This makes it necessary to consider the variation of braking distance due to these effects in the train protection system, which is achieved and communicated by help of braking curves. 
 
@@ -246,7 +246,8 @@ For a limited number of train formations, such as multiple units, the braking cu
 	\item Wheel/rail contact: rail surface, contaminants, slip
  	\item Discrete failure modes \cite{tsilocpas}
 \end{itemize} 
-The braking curve is obtained by running Monte Carlo simulations of the unit and the limited number of multiple traction formation it may operate in.
+The braking curve is obtained by running Monte Carlo simulations of the unit and the limited number of multiple traction formation it may operate in. 
+This is only feasible for trains running limited formations due to the high number of simulations necessary to provide the braking curve with sufficient certainty for the rare event levels associated with the hazards such as signal passed at danger.
 
 Since the amount of headway determines the utilisation of the infrastructure, it is desirable to operate trains with as short distances as possible. This may be achieved on the one hand by more reliable predictions of the braking distance and on the other hand by a shift from the current block system as depicted in Figure \ref{fig:AbsSpacDist} towards a moving block system as in Figure \ref{fig:RelBakDist}.
 
@@ -259,9 +260,9 @@ Due to this treatment of trains, the class of freely configurable rolling stock 
 
 With Figure \ref{Fig:BrakingCurves} in view, it is more obvious how to calculate a braking curve originating from retardation values over a velocity interval. Further it is not feasible to use the same Monte Carlo approach as for multiple units, since the amount of permissible train configurations from a set of wagons for most railway undertakings in far too high to be calculated in advance.
 
-The European Railway Agency has conceived an approach that based its prediction on the braked weight percentages of the train, based on tests with with a large variety of trains \cite{ERAbrakingcurves}. It may be expected that the trains employed for testing are selected to be representative of the maintenance and technical of freight wagons. For this reason, trains made up of uniform wagon type which are well maintained and of current design may be treated disadvantageously. Further, the feasible amount of train testing is obviously limited compared to the confidence levels typically required by train protection systems which are in the range $\alpha = 10^{-6} \ldots 10^{-9}$.
+The European Railway Agency has conceived an approach that based its prediction on the braked weight percentages of the train, based on tests with with a large variety of trains \cite{ERAbrakingcurves}. It may be expected that the trains employed for testing are selected to be representative of the maintenance and technical status of freight wagons. For this reason, trains made up of uniform wagon type which are well maintained and of current design may be treated disadvantageously. Further, the feasible amount of train testing is obviously limited compared to the confidence levels typically required by train protection systems which are in the range $\alpha = 10^{-6} \ldots 10^{-9}$.
 
-\subsection{Introduction}
+\subsection{Big Data for railway}
 In the present research on usage of Big Data in the railway system, mostly two areas are considered to gain advantage from Big Data Usage, which is on the one hand condition based maintenance, e.g. \cite{fumeo2015condition, thaduri2015railway, elsen:Cray}. The potential for savings by optimising maintenance is high in the railway business, as the lifecycle of vehicles is long and thus the maintenance cost is typically higher than the initial investment.
 
 On the other hand, prediction of operational status as well as optimisation of railway operation, as in e.g. \cite{papa2016delay, oneto2016delay, elsen:ISC17}, are fields were the data integration may be put to service profitably.
@@ -289,7 +290,7 @@ This paper deals with the interface between these two: The results of the analys
 	\end{center}
 \end{table}
 
-The determination of Big Data is often Based on the "V's"' of Big Data \cite{hilbert2016big, Eadline2016}. While there are sometimes different sets of the V's, they all share in common
+The determination of Big Data is often based on the "V's"' of Big Data \cite{hilbert2016big, Eadline2016}. While there are sometimes different sets of the V's, they all share in common
 \begin{description}
 	\item[Volume:] quantity of stored and generated data 
 	\item[Variety:] type and nature of the data
@@ -302,34 +303,36 @@ For the example application presented in this paper, the DB Cargo open data set 
 
 The quantity of data for DB Cargo alone will amount to approximately 100TB (and $>5.8\cdot 10^{12}$ datapoints) per year, which can be extrapolated by DB market share of 62\% to approximately 150TB per year for all freight railway undertakings in Germany. Since one peculiarity of the freight rail system is that some wagons run very frequently while others are rarely operated, this dataset needs to be kept accessible and shared between the operators in order to obtain  information on past performance of a wagon.
 
-On top of that, there is the requirement not only to store the data -- including burst transfers during on-line transmission of data -- but also for a real time prediction of potentially critical situations
+On top of that, there is the requirement not only to store the data -- including burst transfers during on-line transmission of data -- but also for a real time prediction of potentially critical situations.
 
 \subsection{Processing slow and fast data}
-As has been shown in \cite{elsen:M318} similar requirements are encountered when performing real-time arrival predicitions for trains. The architecture is based on the Lambda--Architecture pattern \cite{Marz2015}
+As has been shown in \cite{elsen:M318} similar requirements are encountered when performing real-time arrival predictions for trains. The architecture is based on the Lambda--Architecture pattern \cite{Marz2015}
 
 While the data generated during operation is required to be processed with sub-second latency\footnote{The operation requirement is still in the range of a few seconds, but this includes the complete data flow.}, every date must be stored and is used as input to the machine learning algorithms. This ensures, that data analysis, classifiers and predictors operate on the most recent dataset possible. The real-time processing in the Streaming Layer of the Lambda-Architecture relies on a stream-processing framework (Apache Storm, for higher latencies, Apache Spark would be possible, too), the preparation of the datasets for training of the ML algorithms or analyzing a large dataset takes advantage of the Batch-Processing Layer using well known Hadoop--Tools like Hive and HBase or straigt forward implementations using the well known MapReduce algorithm \cite{Dean:2004:MSD:1251254.1251264}
 
 \section{Proposed approach to braking performance monitoring (Raphael, Ingo)}
 \subsection{Introduction}
-Following the above arguments, a precise prediction of braking distances is highly desirable for performance reasons. In most countries of the world, freight rail rolling stock is comparably little advanced in terms of monitoring and connectivity. The typical freight wagon does not have power supply nor sensors. The sensible step to equip freight wagons with sensing, processing and connecting capabilities was proposed under the term \textit{Wagon 4.0} in \cite{pfaff2017stephenson}. The Wagon 4.0 makes sensing and data collection economically viable. Further it is open for further developments due to the introduction of an operating system, making the functionality described in the sequel work like a mobile phone app.
+Following the above arguments, a precise prediction of braking distances is highly desirable for performance reasons. The typical freight wagon does not have power supply nor sensors. The sensible step to equip freight wagons with sensing, processing and connecting capabilities was proposed under the term \textit{Wagon 4.0} in \cite{pfaff2017stephenson}. The Wagon 4.0 makes sensing and data collection economically viable. Further it is open for further developments due to the introduction of an operating system, making the functionality described in the sequel work like a mobile phone app.
 
 In order to keep hardware invest low and onboard technology simple, only accelerometer data is assumed to be known to the algorithm. Each wagon can be identified uniquely thanks to its wagon number. The wagons in a train can, besides some longitudinal dynamic effects, only experience the same deceleration despite different braking performance.
-
-In this early study, no dynamic effects of e.g. brake pipe and distributor valve is taken into account, also no velocity dependent brake decelerations are recorded. Instead, only one deceleration is recorded per wagon per braking process.
 
 \subsection{Proposed algorithm}
 The algorithm to estimate the standard deviation of the braking performance is assumed to receive as an input the braking deceleration of the individual wagon. This could be achieved by e.g. using Kalman Filtering of the sensor data, possibly improved by information on the wagon weight to improve the dynamic model.
 
-The wagon fleet data is managed in key-value-pairs $<k, v>$, the key $k$ being the unique wagon identification number and the value vector $v = \left(\sigma, n\right)$ stores the estimated standard deviation of the braking performance $\sigma$ and the number of observed braking processes $n$ for the wagon under consideration.
+The wagon fleet data is managed in key-value-pairs $<k, v>$, the key $k$ being the unique wagon identification number and the value vector $v = \left(\sigma, n\right)$ stores the estimated braking force $F_{B}$ and the number of observed braking processes $n$ for the wagon under consideration.
 
-This deceleration due to the formation of trains is prone to be the same for all wagons in a train, thus it is difficult to estimate the variation of braking performance since the train is in fact a physical implementation of the Central Limit Theorem. 
+The braking force is considered in terms of Bayesian statistics, since the Bayesian probability concept, which is based on belief and can be updated as new data arrives. In this framework, the braking performance of a given wagon is initialised with a prior $F_{B}$ and updated as new observations of the deceleration $a$ arrive.
 
-To circumvent the convergence of the resulting distribution towards an attractor distribution, after the braking process is terminated and the observed braking deceleration is communicated to the streaming data platform, for each wagon with key $k$ a Monte-Carlo-Simulation with braking decelerations of all wagons $k_{i} \neq k$ drawn from their past observed distributions (normal distribution with standard deviation from the data store) is performed. In this way, the likely contribution of the wagon $k$ can be obtained by comparing the observed train deceleration with the results from the Monte-Carlo-Simulation.
-
-This likely distribution of braking performance that meets the observed braking performance of the trainset is then analysed for its variance $\hat{\sigma}^2$ for each wagon $k$. This is incorporated into the prior variance $\bar{\sigma}^2$ by way of Bayesian updating, using the update \cite{gelman2014bayesian}
+Based on the prior distribution and the current observation, the observed braking force of the $i$th wagons is calculated as 
 \begin{equation}
-\sigma^2 = \frac{\hat{\sigma}^2 \bar{\sigma}^2}{\hat{\sigma}^2 + \bar{\sigma}^2}
+F_{B, obs} =\frac{a}{m_{i}}
 \end{equation}
+followed by a Bayesian update of the distribution of $F_{B}$
+\begin{eqnarray}
+\sigma_{est}(k) &=& \alpha \sqrt{\frac{\sigma^2 \sigma_{est}(k-1)^2}{\sigma^2+\sigma_{est}(k)^2}}\\
+F_{B,est} &=& \frac{F_{B} \sigma^2 + F_{B, obs}*\sigma_{est}(k)^2}{\sigma^2+\sigma_{est}(k)^2} 
+\end{eqnarray}
+where $\sigma$ represents the measurement noise and $\alpha$ an alertness factor, reflecting the fact that the observed braking forces stem from train operation imposing a higher variance than the measurement noise alone.
 
 This updated standard deviation is then stored on the key value store until the next braking data arrives.
 
@@ -343,47 +346,34 @@ In terms of a MapReduce implementation of the proposed algorithm, this can be ac
 	\item Shuffle: The worker nodes redistribute the data based on output keys such that all data belonging to one output key is located on one node.
 	\item Reduce: 
 	\begin{itemize}
-		\item For each $<k, v>$, the Monte-Carlo-Simulation of the remaining wagons is performed, only requiring data present on the node.
 		\item For each $<k, v>$, the Bayesian update is performed and the key value storage is updated accordingly.
 		\end{itemize}
 \end{enumerate}
-The first operation in Reduce can be optimised by simulating all wagons $k$ only once, followed by an intermediary reduce operation to calculate the braking performance of wagon $k$.
 
 \subsection{Numerical example}
-The algorithm as described above has been executed with a small data set of $N = 100$ wagons and comparably short trains of $n = 10$ wagons each. Out of this wagon pool, $M = 100$ trains are assembled randomly and operated, with $m = 10$ braking processes observed from each train. The $<k,v>$ data storage is initialised with the conservative prior of $v = \left(2 \sigma, 0\right)$, yielding a less reliable braking distance.
+The algorithm as described above has been executed with a small data set of $N = 5 \cdot 10^4$ wagons, representing about half of DB's fleet and trains of $n = 20$ wagons each. Out of this wagon pool, $M = 83.3 \cdot 10^4$ trains (one average day of train freight train operation) are assembled randomly and operated, with $m = 5$ braking processes observed from each train. The $<k,v>$ data storage is initialised with the conservative prior exhibiting a mean value representing 50\% of the true braking force and a standard deviation increased by a factor of 10, yielding a less reliable braking force.
 
 Each wagon has a mass and a braking force $F_{b}$ resulting from the brake block friction coefficient, the brake rigging efficiency and the nominal brake force. The resulting brake force of each wagon is simulated to be varying following a normal distribution having a standard deviation which is itself uniformly drawn from the interval $\left[0, \sigma_{max}\right]$, where $\sigma_{max} = 0.05 F_{b}$.
 
-The resulting braking distance is calculated for each of the operated trains, then the observed deceleration $\hat{a}$ is calculated and additive white noise having a standard deviation $\sigma_{a} = 0.05 \hat{a}$ is added. 
+The resulting braking deceleration is calculated for each of the virtually operated trains, then the observed deceleration $\hat{a}$ is calculated and additive white noise having a standard deviation $\sigma_{a} = 0.1\hat{a}$ is added. 
 
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-	name=main plot,
-	%xlabel=Wagon number,
-	ylabel=$\sigma$,
-	xmin = 0, ymin = 0, ymax = 0.06, xmax = 100, height = 5cm, width = 8cm,
-	legend entries={$\sigma$,$\hat{\sigma}$}
-	]
-\addplot[thick, black] table[x=No, y=SDtrue, mark = none] {TrainSim.dat};
-\addplot[thick, blue, mark = none, dashed] table[x=No, y=SDest] {TrainSim.dat};
-\end{axis}
-\begin{axis}[
-	 at={(main plot.below south west)},yshift=-3cm,
-	xlabel=Wagon number,
-	ylabel=$n_{\text{brakings}}$,
-	xmin = 0, ymin = 0, ymax = 220, xmax = 100, height = 4cm, width = 8cm,
-	]
-\addplot[thick, black] table[x=No, y=n] {TrainSim.dat};
-\end{axis}
-\end{tikzpicture}
-\caption{Comparison of estimated and true standard deviations $\hat{\sigma}$  and $\sigma$ (above), number of observed braking processes (below.)}
-\label{Fig:BrakingSD}
+\includegraphics[width = 0.7\textwidth]{190121FleetEstimate}
+\caption{Comparison of estimated and true braking force (above), number of observed braking processes (below.)}
+\label{Fig:BrakingF}
 \end{center}
 \end{figure}
 
-The MapReduce algorithm as described above is executed after each braking process, with 1000 Monte-Carlo-instances of the braking force in the Reduce stage. The results are plotted in Figure \ref{Fig:BrakingSD}, showing the good convergence of the estimated standard deviations $\hat{\sigma}$ towards the true standard deviation $\sigma$ despite the conservative prior.
+\begin{figure}
+\begin{center}
+\includegraphics[width = 0.7\textwidth]{190121Errors}
+\caption{Convergence of mean errors on fleet and train level}
+\label{Fig:BrakingError}
+\end{center}
+\end{figure}
+
+The MapReduce algorithm as described above is executed after each braking process, with $\alpha = 5$. The results are plotted in Figure \ref{Fig:BrakingF}, showing an appropriate convergence of the estimated force from the conservative prior  towards the true values. In Figure \ref{Fig:BrakingError}, the reduction of the errors on both fleet and train level of the iterations of the algorithm is depicted. The error converges on a positive values, indicating a still conservative prediction.
 
 \section{Conclusion and further work}
 The problem of stochastic behaviour of braking performances of railway rolling stock was reviewed and put into the context of train protection systems as well as performance. The amount of data to be expected in such applications exclusively for monitoring of the braking system is determined, with the amount for this application being within a feasible dimension, however requiring appropriate data structures and algorithms.
@@ -392,9 +382,7 @@ An algorithm for the estimation of individual wagons braking performance varianc
 
 The algorithm as well as the numerical study did not consider the expected value of the braking performance to be varying over time, however especially considering the typical 6 to 8 year maintenance interval and the operational conditions, such variations over time do occur and provide additional insight into the maintenance condition of the rolling stock, therefore an inclusion in future development steps appears desirable.
 
-Further the estimation of a standard deviation may be too error prone given the typical confidence levels of train control systems of $\alpha = 10^{-6} \ldots 10^{-9}$. Therefore, a direct estimation of braking distance at a given confidence will greatly improve the applicability of the algorithm. This will require the current crude Monte-Carlo-Simulation to be replaced by an appropriate Rare Event Simulation technique, possibly also integrating discrete failure modes.
-
-The exploitation of the time behaviour of the brake pipe system also has the potential to improve the procedure, as in this way it is more easy to identify the wagons contribution. Finally, trials using real world data will also be required to verify the procedure.
+Future amendments to the proposed procedure will include more data from various sources such as weather and position, in order to devise algorithms for brake control mimicking the human driver as closely as possible.
 
 
 % Bibliography
