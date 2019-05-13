@@ -69,7 +69,7 @@ In current settings, it is typical to develop these so called braking curves eit
 
 However, higher developed train protection and control systems, such as the European Rail Traffic Management System (ERTMS) or the Russian KLUB-U System together with current efforts towards quantitative risk analysis, e.g. the European Common Safety Methods, require a more formal approach to communicate the braking curve of a train between rolling stock and infrastructure.
 
-An a priori determined set of braking curves is feasible for trains running in fixed or a limited number of formations, such as multiple unit trains, however in the freight railway system due to its vast amount of different vehicles and possible train setups, the determination of the braking curves is prohibitive.
+An a priori determined set of braking curves is feasible for trains running in fixed or a limited number of formations, such as multiple unit trains, however in the freight railway system due to its vast amount of different vehicles and possible train setups, the determination of the braking curves is prohibitive. This paper develops an approach to obtain braking curves from observed deceleration data, which due to its structure may be applied to data streams of arbitrary size. The proposed algorithm is tested on a simulated set-up.
 
 
 \section{Introduction}
@@ -304,7 +304,7 @@ As in the fixed block system the variation of braking performance did not play a
 
 Due to this treatment of trains, the class of freely configurable rolling stock is termed $\lambda$-braked, whereas the class of multiple units for which retardation values are recorded is termed $\gamma$-braked. As opposed to the $\gamma$-value, $\lambda$ has no direct physical meaning but offers a high degree of usability, as the braking performance of a train can be easily calculated by summation of the braked weights of the individual wagons or coaches.
 
-With Figure \ref{Fig:BrakingCurves} in view, it is more obvious how to calculate a braking curve originating from retardation values over a velocity interval. Further it is not feasible to use the same Monte Carlo approach as for multiple units, since the amount of permissible train configurations from a set of wagons for most railway undertakings in far too high to be calculated in advance.
+%With Figure \ref{Fig:BrakingCurves} in view, it is more obvious how to calculate a braking curve originating from retardation values over a velocity interval. Further it is not feasible to use the same Monte Carlo approach as for multiple units, since the amount of permissible train configurations from a set of wagons for most railway undertakings in far too high to be calculated in advance.
 
 The European Railway Agency has conceived an approach that based its prediction on the braked weight percentages of the train, based on tests with with a large variety of trains \cite{ERAbrakingcurves}. It may be expected that the trains employed for testing are selected to be representative of the maintenance and technical status of freight wagons. For this reason, trains made up of uniform wagon type which are well maintained and of current design may be treated disadvantageously. Further, the feasible amount of train testing is obviously limited compared to the confidence levels typically required by train protection systems which are in the range $\alpha = 10^{-6} \ldots 10^{-9}$.
 
@@ -337,7 +337,7 @@ This paper deals with the interface between these two: The results of the analys
 	\end{center}
 \end{table}
 
-The determination of Big Data is often Based on the "V's"' of Big Data \cite{hilbert2016big}. While there are sometimes different sets of the V's, they all share in common
+The determination of Big Data is, instead of the sheer size of the dataset, often based on the "V's"' of Big Data \cite{hilbert2016big}. While there are sometimes different sets of the V's, they all share in common
 \begin{description}
 	\item[Volume:] quantity of stored and generated data 
 	\item[Variety:] type and nature of the data
@@ -403,7 +403,7 @@ The algorithm as described above has been executed with a small data set of $N =
 Each wagon has a mass and a braking force $F_{b}$ resulting from the brake block friction coefficient, the brake rigging efficiency and the nominal brake force. The resulting brake force of each wagon is simulated to be varying following a normal distribution having a standard deviation which is itself uniformly drawn from the interval $\left[0, \sigma_{max}\right]$, where $\sigma_{max} = 0.05 F_{b}$.
 
 The resulting braking deceleration is calculated for each of the virtually operated trains, then the observed deceleration $\hat{a}$ is calculated and additive white noise having a standard deviation $\sigma_{a} = 0.1\hat{a}$ is added. 
-\centering
+\begin{centering}
 \begin{figure}
 \begin{minipage}[t]{0.45\textwidth} 
 \includegraphics[width = \textwidth]{190121FleetEstimate}
@@ -420,7 +420,7 @@ The resulting braking deceleration is calculated for each of the virtually opera
 \end{minipage}
 
 \end{figure}
-
+\end{centering}
 The MapReduce algorithm as described above is executed after each braking process, with $\alpha = 5$. The results are plotted in Figure \ref{Fig:BrakingF}, showing an appropriate convergence of the estimated force from the conservative prior  towards the true values. In Figure \ref{Fig:BrakingError}, the reduction of the errors on both fleet and train level of the iterations of the algorithm is depicted. The error converges on a positive values, indicating a still conservative prediction.
 
 \section{\titlecap{Conclusion and further work}}
